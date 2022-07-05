@@ -8,11 +8,7 @@ def array_diagonal_sums(array):
         sum_diag_first = sum_diag_first + array[i][i]                           # Сумма по диагонали 1
         sum_diag_second = sum_diag_second + array[i][array_dimension - 1 - i]   # Сумма по диагонали 2
 
-    return [
-            'Размерность квадратного массива: ', array_dimension, '\n',
-            'Сумма первой диагонали: ', sum_diag_first, '\n',
-            'Сумма второй диагонали: ', sum_diag_second
-           ]
+    return [array_dimension, sum_diag_first, sum_diag_second]
 
 
 def create_array(dimension_columns_rows):
@@ -29,6 +25,14 @@ def create_array(dimension_columns_rows):
     return array
 
 
+def fill_letter_in_array(array, letter_for_array):
+    for i in range(len(array)):
+        for x in letter_for_array[i]:
+            array[i][x] = "B"
+
+    return array
+
+
 def print_array(array):
     # вывод как массива
     for i in array:
@@ -40,40 +44,16 @@ def print_array(array):
         print(end='\n')
 
 
-def fill_letter(array, letter_for_array):
-    for i in range(len(array)):
-        for x in letter_for_array[i]:
-            array[i][x] = "B"
-
-    return array
-
-
-def print_array_diagonal_sums(array):
-
-    for i in array_diagonal_sums(array):
-        print(i, end='')
-    print(end='\n')
-
-
-def letter_in_array(array_dimension_for_letter, letter_for_array):
-
-    array_empty = create_array(array_dimension_for_letter)
-    array_with_letter = fill_letter(array_empty, letter_for_array)
-    print_array(array_with_letter)
-
-    return create_array(array_dimension_for_letter)
-
-
 def main():
-# входящие данные (массив) для подсчета суммы по диагоналям
+    # входящие данные (массив) для подсчета суммы по диагоналям
     array_test_for_sum = [
                           [22, 10, 12],
                           [0, -4, 17],
                           [44, 99, 14]
                          ]
 
-# входящие данные для буквы в массиве: размерность массива с пробелами и схема буквы "попиксельно"
-# (указаны индексы элементов массива, в которых пробел будет заменен на печатный символ
+    # входящие данные для буквы в массиве: размерность массива с пробелами и схема буквы "попиксельно"
+    # (указаны индексы элементов массива, в которых пробел будет заменен на печатный символ
     array_dimension_for_letter = [7, 10]
     letter_for_array = [
                         [0, 1, 2],
@@ -88,8 +68,18 @@ def main():
                         [0, 1, 2, 3, 4]
                        ]
 
-    print_array_diagonal_sums(array_test_for_sum)
-    letter_in_array(array_dimension_for_letter, letter_for_array)
+# расчет суммы диагоналей для квадратного массива
+    result_diagonal_sums = array_diagonal_sums(array_test_for_sum)
+    print(
+         'Размерность квадратного массива: ', result_diagonal_sums[0], '\n',
+         'Сумма первой диагонали: ', result_diagonal_sums[1], '\n',
+         'Сумма второй диагонали: ', result_diagonal_sums[2]
+         )
+
+# создание массива и заполнение данными по узору (букве)
+    empty_array = create_array(array_dimension_for_letter)
+    array_with_letter = fill_letter_in_array(empty_array, letter_for_array)
+    print_array(array_with_letter)
 
 
 if __name__ == '__main__':
