@@ -2,13 +2,12 @@ def array_diagonal_sums(array):
 
     sum_diag_first = 0
     sum_diag_second = 0
-    array_dimension = len(array)
 
-    for i in range(array_dimension):
-        sum_diag_first = sum_diag_first + array[i][i]                           # Сумма по диагонали 1
-        sum_diag_second = sum_diag_second + array[i][array_dimension - 1 - i]   # Сумма по диагонали 2
+    for i in range(len(array)):
+        sum_diag_first += array[i][i]                     # Сумма по диагонали 1
+        sum_diag_second += array[i][len(array) - 1 - i]   # Сумма по диагонали 2
 
-    return [array_dimension, sum_diag_first, sum_diag_second]
+    return [sum_diag_first, sum_diag_second]
 
 
 def create_array(dimension_columns_rows):
@@ -71,9 +70,8 @@ def main():
 # расчет суммы диагоналей для квадратного массива
     result_diagonal_sums = array_diagonal_sums(array_test_for_sum)
     print(
-         'Размерность квадратного массива: ', result_diagonal_sums[0], '\n',
-         'Сумма первой диагонали: ', result_diagonal_sums[1], '\n',
-         'Сумма второй диагонали: ', result_diagonal_sums[2]
+         ' Сумма первой диагонали: ', result_diagonal_sums[0], '\n',
+         'Сумма второй диагонали: ', result_diagonal_sums[1]
          )
 
 # создание массива и заполнение данными по узору (букве)
